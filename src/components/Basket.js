@@ -1,7 +1,7 @@
 import React from "react";
 
-const Card = () => {
+const Basket = () => {
   return <div>Card</div>;
 };
 
-export default Card;
+export default Basket;
