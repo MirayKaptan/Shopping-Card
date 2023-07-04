@@ -1,22 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { faker } from "@faker-js/faker";
 import Product from "./Product";
+import { Card } from "../Context";
 faker.seed(100)
-const Home = ({card, setCard}) => {
-  const productArray = [...Array(50)].map(() => ({
-    id: faker.string.uuid(),
-    name: faker.commerce.productName(),
-    price: faker.commerce.price(),
-    image: faker.image.urlPicsumPhotos(),
-  }));
 
-  console.log(productArray);
+const Home = () => {
+  const {card, setCard} = useContext(Card)
+  console.log(useContext(Card))
+const [products, setProducts] = useState([])
 
-  const [products] = useState(productArray);
+  React.useEffect(() => {
+    const productArray = [...Array(50)].map(() => ({
+      id: faker.string.uuid(),
+      name: faker.commerce.productName(),
+      price: faker.commerce.price(),
+      image: faker.image.urlPicsumPhotos(),
+    }));
+    setProducts(productArray)
+  },[])
+
   return (
     <div className="flex p-5 flex-wrap justify-evenly">
       {products.map((prod) => (
-        <Product prod={prod} card={card} setCard={setCard} key= {prod.id} />
+        <Product prod={prod} key= {prod.id} card={card} setCard={setCard} />
       ))}
     </div>
   );

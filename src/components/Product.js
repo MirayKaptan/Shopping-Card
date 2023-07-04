@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Card } from "../Context";
 
-const Product = ({ prod, card, setCard }) => {
+const Product = ({ prod }) => {
+  const {card, setCard} = useContext(Card)
   return (
     <div className="flex flex-col m-3 w-[25%] p-3 border border-sky-500 ">
       <img src={prod.image} alt={prod.name} />
